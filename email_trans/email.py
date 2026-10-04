@@ -1,8 +1,6 @@
-# email_sender.py
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-
 
 def send_email(
     sender_email: str,
@@ -22,13 +20,12 @@ def send_email(
         dict with 'success' (bool) and 'message' (str)
     """
     try:
-        # --- Build the email ---
         msg = MIMEMultipart("alternative")
         msg["From"] = sender_email
         msg["To"] = recipient_email
         msg["Subject"] = subject
 
-        # Plain text version
+        
         plain_body = (
             f"{japanese_body}\n"
             f"\n"
@@ -37,7 +34,6 @@ def send_email(
             f"{english_body}\n"
         )
 
-        # HTML version (looks nicer in email clients)
         html_body = f"""
         <html>
         <body style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -60,7 +56,6 @@ def send_email(
         msg.attach(MIMEText(plain_body, "plain", "utf-8"))
         msg.attach(MIMEText(html_body, "html", "utf-8"))
 
-        # --- Send the email ---
         with smtplib.SMTP(smtp_host, smtp_port) as server:
             server.starttls()                           # Secure the connection
             server.login(sender_email, sender_password) # Login
