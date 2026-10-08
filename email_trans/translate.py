@@ -43,6 +43,6 @@ def translate(english_text: str) -> str:
 
 
 if __name__ == "__main__":
-    test_text = "myy name is ramu"
+    test_text = "hey, do u need some changes"
     print(f"English:  {test_text}")
     print(f"Japanese: {translate(test_text)}")
