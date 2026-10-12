@@ -1,0 +1,6 @@
+Flask
+python-dotenv
+langchain-core
+langchain-nvidia-ai-endpoints
+torch
+transformers
